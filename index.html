@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahdy Adel Diab | Data Scientist</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e17;
+    --bg2:#0f1524;
+    --card:#121a2b;
+    --accent:#00f0ff;
+    --accent2:#7c5cff;
+    --green:#00ff9d;
+    --text:#e2e8f0;
+    --muted:#8b99b3;
+    --border:rgba(0,240,255,.15);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+  /* ===== NAVBAR ===== */
+  nav{position:fixed;top:0;width:100%;background:rgba(10,14,23,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100}
+  .nav-inner{max-width:1100px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+  .logo{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--accent);font-size:1.1rem;text-decoration:none}
+  .logo span{color:var(--text)}
+  .nav-links{display:flex;gap:28px;list-style:none}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:.3s}
+  .nav-links a:hover{color:var(--accent)}
+  .menu-btn{display:none;background:none;border:none;color:var(--accent);font-size:1.5rem;cursor:pointer}
+
+  /* ===== HERO ===== */
+  .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding-top:80px}
+  #particles{position:absolute;inset:0;z-index:0}
+  .hero-content{position:relative;z-index:1}
+  .hero-flex{display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap}
+  .hero-tag{color:var(--green);font-family:'JetBrains Mono',monospace;font-size:.95rem;margin-bottom:16px}
+  .hero h1{font-size:clamp(2.2rem,6vw,4rem);font-weight:700;line-height:1.1}
+  .hero h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .typing-line{font-size:clamp(1.1rem,3vw,1.6rem);margin:20px 0;font-family:'JetBrains Mono',monospace;color:var(--muted);min-height:2em}
+  .typing-line .typed{color:var(--accent)}
+  .cursor{display:inline-block;width:10px;background:var(--accent);animation:blink 1s infinite}
+  @keyframes blink{50%{opacity:0}}
+  .hero p.desc{max-width:600px;color:var(--muted);line-height:1.7;margin-bottom:32px}
+  .btn{display:inline-block;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;transition:.3s;font-size:.95rem}
+  .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#0a0e17}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,240,255,.3)}
+  .btn-outline{border:1px solid var(--accent);color:var(--accent);margin-left:14px}
+  .btn-outline:hover{background:rgba(0,240,255,.1)}
+  .hero-stats{display:flex;gap:40px;margin-top:50px;flex-wrap:wrap}
+  .stat .num{font-size:1.8rem;font-weight:700;color:var(--accent);font-family:'Space Grotesk',sans-serif}
+  .stat .lbl{font-size:.85rem;color:var(--muted)}
+
+  /* ===== Hero Photo ===== */
+  .hero-photo-wrap{position:relative}
+  .hero-photo{width:240px;height:240px;border-radius:50%;padding:5px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 60px rgba(0,240,255,.25);animation:float 4s ease-in-out infinite}
+  .hero-photo img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center 15%;display:block}
+  .photo-badge{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--green);color:var(--green);font-family:'JetBrains Mono',monospace;font-size:.75rem;padding:6px 14px;border-radius:20px;white-space:nowrap}
+  @keyframes float{50%{transform:translateY(-12px)}}
+
+  /* ===== SECTIONS ===== */
+  section{padding:100px 0}
+  .section-title{font-size:2rem;margin-bottom:12px}
+  .section-title::before{content:'> ';color:var(--accent);font-family:'JetBrains Mono',monospace}
+  .section-sub{color:var(--muted);margin-bottom:48px;max-width:600px}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .terminal{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+  .terminal-bar{background:#1a2338;padding:10px 16px;display:flex;gap:8px}
+  .dot{width:12px;height:12px;border-radius:50%}
+  .terminal-body{padding:20px;font-family:'JetBrains Mono',monospace;font-size:.85rem;line-height:1.9}
+  .c-key{color:var(--accent2)} .c-val{color:var(--green)} .c-com{color:var(--muted)}
+  .about-text p{color:var(--muted);line-height:1.8;margin-bottom:16px}
+  .about-text strong{color:var(--text)}
+
+  /* Skills */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
+  .skill-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;transition:.3s}
+  .skill-card:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:0 10px 40px rgba(0,240,255,.15)}
+  .skill-card .icon{font-size:1.8rem;margin-bottom:14px}
+  .skill-card h3{font-size:1.05rem;margin-bottom:14px;color:var(--accent)}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{background:rgba(0,240,255,.08);border:1px solid var(--border);color:var(--text);padding:5px 12px;border-radius:20px;font-size:.78rem;font-family:'JetBrains Mono',monospace}
+
+  /* Certifications */
+  .cert-banner{background:linear-gradient(135deg,rgba(0,240,255,.08),rgba(124,92,255,.08));border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin-bottom:36px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .cert-banner h3{color:var(--accent);font-size:1.15rem}
+  .cert-banner p{color:var(--muted);font-size:.9rem;margin-top:4px}
+  .cert-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+  .cert-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;display:flex;gap:14px;align-items:center;transition:.3s}
+  .cert-item:hover{border-color:var(--green);transform:translateX(6px)}
+  .cert-item .check{color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:600}
+  .cert-item span{font-size:.9rem}
+
+  /* Soft Skills */
+  .soft-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+  .soft-card{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:30px 20px;transition:.3s}
+  .soft-card:hover{transform:translateY(-6px);border-color:var(--accent2)}
+  .soft-card .emoji{font-size:2rem;margin-bottom:12px}
+  .soft-card h3{font-size:1rem;margin-bottom:8px}
+  .soft-card p{font-size:.82rem;color:var(--muted);line-height:1.6}
+
+  /* ===== Projects ===== */
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px}
+  .project-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:.3s;display:flex;flex-direction:column}
+  .project-card:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:0 15px 45px rgba(0,240,255,.15)}
+  .project-gallery{display:grid;grid-template-columns:1.7fr 1fr;gap:8px;padding:12px 12px 0}
+  .project-gallery .main{width:100%;height:250px;object-fit:cover;object-position:left center;border-radius:10px;border:1px solid var(--border);transition:.3s;display:block}
+  .thumbs{display:grid;gap:8px}
+  .thumbs img{width:100%;height:121px;object-fit:cover;object-position:left center;border-radius:10px;border:1px solid var(--border);transition:.3s;display:block}
+  .project-gallery img:hover{transform:scale(1.03);border-color:var(--accent)}
+  .project-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:12px;flex:1}
+  .project-head{display:flex;justify-content:space-between;align-items:center}
+  .project-num{font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:600;color:rgba(0,240,255,.25)}
+  .project-type{background:rgba(124,92,255,.15);border:1px solid rgba(124,92,255,.4);color:#b9a5ff;font-size:.72rem;padding:4px 12px;border-radius:20px;font-family:'JetBrains Mono',monospace}
+  .project-card h3{font-size:1.1rem;color:var(--text)}
+  .project-card p{font-size:.87rem;color:var(--muted);line-height:1.7}
+
+  /* Wide gallery — للسكرين شوتس */
+  .project-gallery.wide{grid-template-columns:1fr}
+  .project-gallery.wide .thumbs{grid-template-columns:1fr 1fr}
+  .project-gallery.wide .main{height:210px;object-position:top center}
+  .project-gallery.wide .thumbs img{height:100px;object-position:top center}
+
+  /* Services */
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
+  .service-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:30px;transition:.3s;position:relative;overflow:hidden}
+  .service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .service-card:hover{transform:translateY(-6px);box-shadow:0 15px 40px rgba(0,240,255,.12)}
+  .service-card .icon{font-size:1.8rem;margin-bottom:16px}
+  .service-card h3{font-size:1.05rem;margin-bottom:10px}
+  .service-card p{font-size:.87rem;color:var(--muted);line-height:1.7}
+
+  /* Contact */
+  .contact-box{text-align:center;max-width:640px;margin:0 auto}
+  .contact-box .big{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:16px}
+  .contact-box p{color:var(--muted);margin-bottom:36px;line-height:1.7}
+  .contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .contact-link{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);padding:14px 26px;border-radius:10px;color:var(--text);text-decoration:none;transition:.3s;font-size:.9rem}
+  .contact-link:hover{border-color:var(--accent);transform:translateY(-3px)}
+
+  footer{text-align:center;padding:32px;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem}
+  footer .mono{color:var(--accent)}
+
+  /* Scroll reveal */
+  .reveal{opacity:0;transform:translateY(30px);transition:.7s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* Responsive */
+  @media(max-width:768px){
+    .nav-links{position:fixed;top:64px;right:-100%;flex-direction:column;background:var(--bg2);width:70%;height:100vh;padding:40px 30px;gap:24px;transition:.4s}
+    .nav-links.open{right:0}
+    .menu-btn{display:block}
+    .about-grid{grid-template-columns:1fr}
+    .btn-outline{margin-left:0;margin-top:14px}
+    .hero-flex{flex-direction:column-reverse}
+    .hero-flex > div:first-child{text-align:center}
+    .hero-flex .desc{margin-left:auto;margin-right:auto}
+    .hero-photo{width:180px;height:180px}
+  }
+</style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">&lt;Mahdy<span>_Diab /&gt;</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certs">Certifications</a></li>
+      <li><a href="#soft">Soft Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="menu-btn" id="menuBtn">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <canvas id="particles"></canvas>
+  <div class="container hero-content hero-flex">
+    <div>
+      <div class="hero-tag">$ initializing portfolio...</div>
+      <h1>Mahdy Adel <span class="grad">Diab</span></h1>
+      <div class="typing-line">I am a <span class="typed" id="typed"></span><span class="cursor">&nbsp;</span></div>
+      <p class="desc">I turn raw data into insights and build intelligent AI solutions. Passionate about Machine Learning, Data Analysis, and Data-Driven Decision Making.</p>
+      <a href="https://wa.me/201061083841?text=Hi%20Mahdy!%20I%20saw%20your%20portfolio%20and%20I%20have%20a%20project%20for%20you." target="_blank" class="btn btn-primary">Hire Me 💬</a>
+      <a href="#services" class="btn btn-outline">View Services</a>
+      <div class="hero-stats">
+        <div class="stat"><div class="num">11+</div><div class="lbl">Courses Completed</div></div>
+        <div class="stat"><div class="num">2</div><div class="lbl">Projects Done</div></div>
+        <div class="stat"><div class="num">∞</div><div class="lbl">Passion for Data</div></div>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="hero-photo">
+        <img src="profile.jpg" alt="Mahdy Adel Diab">
+      </div>
+      <div class="photo-badge">Open to Work ✅</div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title reveal">About Me</h2>
+    <p class="section-sub reveal">A quick look at who I am.</p>
+    <div class="about-grid">
+      <div class="terminal reveal">
+        <div class="terminal-bar">
+          <div class="dot" style="background:#ff5f57"></div>
+          <div class="dot" style="background:#febc2e"></div>
+          <div class="dot" style="background:#28c840"></div>
+        </div>
+        <div class="terminal-body">
+          <div><span class="c-com"># profile.py</span></div>
+          <div><span class="c-key">name</span> = <span class="c-val">"Mahdy Adel Diab"</span></div>
+          <div><span class="c-key">role</span> = <span class="c-val">"Data Scientist"</span></div>
+          <div><span class="c-key">education</span> = <span class="c-val">"CS @ Minia University"</span></div>
+          <div><span class="c-key">program</span> = <span class="c-val">"DEPI — Digital Egypt Pioneers"</span></div>
+          <div><span class="c-key">field</span> = <span class="c-val">"AI & Data Science"</span></div>
+          <div><span class="c-key">specialty</span> = <span class="c-val">"ML & Data Analysis"</span></div>
+          <div><span class="c-key">status</span> = <span class="c-val">"Open for freelance work"</span></div>
+          <div><span class="c-key">mission</span> = <span class="c-val">"Data → Insights → Impact"</span></div>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <p>I'm a <strong>Computer Science student at Minia University</strong> and a participant in the <strong>Digital Egypt Pioneers Initiative (DEPI)</strong>, actively building a strong foundation in software engineering and data technologies.</p>
+        <p>Through my academic studies, I'm mastering fundamental programming concepts, object-oriented design, and core <strong>Computer Science principles</strong> — alongside hands-on web development skills in <strong>HTML & CSS</strong>. Through DEPI, I focus on <strong>Data Science & AI</strong>: deepening my knowledge of data analysis and statistics, and leveraging <strong>Python</strong> to extract insights and build data-driven solutions.</p>
+        <p>My core strengths? <strong>Analytical thinking</strong>, solid <strong>problem solving</strong>, and a passion for turning complex data into clear, actionable results. If you need someone to analyze your data or build intelligent solutions — <strong>let's work together.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:var(--bg2)">
+  <div class="container">
+    <h2 class="section-title reveal">Technical Skills</h2>
+    <p class="section-sub reveal">My toolkit for turning data into decisions.</p>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="icon">🐍</div>
+        <h3>Languages & Core</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="icon">📊</div>
+        <h3>Data Analysis & Viz</h3>
+        <div class="tags">
+          <span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Plotly</span><span class="tag">EDA</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="icon">🤖</div>
+        <h3>Machine Learning</h3>
+        <div class="tags">
+          <span class="tag">Scikit-learn</span><span class="tag">Regression</span><span class="tag">Classification</span><span class="tag">Clustering</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="icon">🗄️</div>
+        <h3>Databases</h3>
+        <div class="tags">
+          <span class="tag">SQL</span><span class="tag">SQLite</span><span class="tag">IBM DB2</span><span class="tag">Jupyter</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="icon">⚙️</div>
+        <h3>MLOps & Tools</h3>
+        <div class="tags">
+          <span class="tag">MLflow</span><span class="tag">Hugging Face</span><span class="tag">Git</span><span class="tag">Watson Studio</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="icon">💻</div>
+        <h3>CS & Web Foundations</h3>
+        <div class="tags">
+          <span class="tag">OOP</span><span class="tag">Data Structures</span><span class="tag">HTML</span><span class="tag">CSS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="container">
+    <h2 class="section-title reveal">Certifications</h2>
+    <p class="section-sub reveal">Completed coursework & certifications.</p>
+    <div class="cert-banner reveal">
+      <div>
+        <h3>🎓 IBM Data Science Professional Certificate</h3>
+        <p>Full professional track — 11 courses + Capstone Project</p>
+      </div>
+      <span class="tag">IBM / Coursera</span>
+    </div>
+    <div class="cert-list">
+      <div class="cert-item reveal"><span class="check">[✓]</span><span>What is Data Science?</span></div>
+      <div class="cert-item reveal"><span class="check">[✓]</span><span>Tools for Data Science</span></div>
+      <div class="cert-item reveal"><span class="check">[✓]</span><span>Data Science Methodology</span></div>
+      <div class="cert-item reveal"><span class="check">[✓]</span><span>Python for Data Science, AI & Development</span></div>
+      <div class="cert-item reveal"><span class="check">[✓]</span><span>Python Project for Data Science</span></div>
+      <div class="cert-item reveal"><span class="check">[✓]</span><span>Databases and SQL for Data Science with Python</span></div>
+      <div class="cert-item reveal"><span class="check">[✓]</span><span>Data Analysis with Python</span></div>
+      <div class="cert-item reveal"><span class="check">[✓]</span><span>Data Visualization with Python</span></div>
+      <div class="cert-item reveal"><span class="check">[✓]</span><span>Machine Learning with Python</span></div>
+      <div class="cert-item reveal"><span class="check">[✓]</span><span>MLOps Tools: MLflow and Hugging Face</span></div>
+      <div class="cert-item reveal"><span class="check">[✓]</span><span>Capstone Project</span></div>
+    </div>
+  </div>
+</section>
+<!-- SOFT SKILLS -->
+<section id="soft" style="background:var(--bg2)">
+  <div class="container">
+    <h2 class="section-title reveal">Soft Skills</h2>
+    <p class="section-sub reveal">Because great results need more than code.</p>
+    <div class="soft-grid">
+      <div class="soft-card reveal"><div class="emoji">🧩</div><h3>Problem Solving</h3><p>Breaking complex problems into clear, solvable steps.</p></div>
+      <div class="soft-card reveal"><div class="emoji">🗣️</div><h3>Communication</h3><p>Explaining technical findings in simple, client-friendly language.</p></div>
+      <div class="soft-card reveal"><div class="emoji">🤝</div><h3>Teamwork</h3><p>Collaborating smoothly with developers, analysts & stakeholders.</p></div>
+      <div class="soft-card reveal"><div class="emoji">⏱️</div><h3>Time Management</h3><p>Delivering quality work on schedule, every time.</p></div>
+      <div class="soft-card reveal"><div class="emoji">🔄</div><h3>Adaptability</h3><p>Fast learner — always ready for new tools & challenges.</p></div>
+      <div class="soft-card reveal"><div class="emoji">🎯</div><h3>Attention to Detail</h3><p>Clean data, clean code, accurate results.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title reveal">Projects & Works</h2>
+    <p class="section-sub reveal">A showcase of my work — from data to creative design.</p>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-gallery wide">
+          <a href="images/project2-1.png" target="_blank"><img src="images/project2-1.png" class="main" alt="Scraped jobs dataset organized in Excel"></a>
+          <div class="thumbs">
+            <a href="images/project2-2.png" target="_blank"><img src="images/project2-2.png" alt="Selenium web scraper code"></a>
+            <a href="images/project2-3.png" target="_blank"><img src="images/project2-3.png" alt="Inspecting Wuzzuf job listings structure"></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-head">
+            <span class="project-num">01</span>
+            <span class="project-type">Data Collection</span>
+          </div>
+          <h3>Wuzzuf Jobs Web Scraper</h3>
+          <p>An automated web scraper built with Python &amp; Selenium that collects real job postings from Wuzzuf.net — navigating paginated results, extracting job titles, companies, locations and application links, filtering duplicates, and exporting a clean, ready-to-analyze Excel dataset with Pandas.</p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">Selenium</span><span class="tag">Pandas</span><span class="tag">Jupyter Notebook</span><span class="tag">Web Scraping</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-gallery">
+          <a href="images/project1-1.jpg" target="_blank"><img src="images/project1-1.jpg" class="main" alt="Final edited portrait"></a>
+          <div class="thumbs">
+            <a href="images/project1-2.jpg" target="_blank"><img src="images/project1-2.jpg" alt="Original photo — before editing"></a>
+            <a href="images/project1-3.jpg" target="_blank"><img src="images/project1-3.jpg" alt="Edited version with gradient background"></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-head">
+            <span class="project-num">02</span>
+            <span class="project-type">Photo Editing</span>
+          </div>
+          <h3>Portrait Retouching & Background Design</h3>
+          <p>Complete portrait editing workflow in Adobe Photoshop: precisely cutting the subject from the original photo, retouching it, and rebuilding the background with modern digital gradient designs — delivering clean, professional before → after results.</p>
+          <div class="tags">
+            <span class="tag">Adobe Photoshop</span><span class="tag">Background Removal</span><span class="tag">Layer Masking</span><span class="tag">Retouching</span><span class="tag">Gradient Design</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <h2 class="section-title reveal">Freelance Services</h2>
+    <p class="section-sub reveal">What I can do for your business.</p>
+    <div class="services-grid">
+      <div class="service-card reveal"><div class="icon">📈</div><h3>Data Analysis</h3><p>Cleaning, exploring and analyzing your data to uncover trends and actionable insights.</p></div>
+      <div class="service-card reveal"><div class="icon">📊</div><h3>Dashboards & Visualization</h3><p>Interactive charts and reports that make your data easy to understand at a glance.</p></div>
+      <div class="service-card reveal"><div class="icon">🤖</div><h3>Machine Learning Models</h3><p>Prediction, classification and forecasting models tailored to your business needs.</p></div>
+      <div class="service-card reveal"><div class="icon">🧠</div><h3>AI-Powered Solutions</h3><p>Leveraging modern AI tools and LLMs to automate and scale your business tasks.</p></div>
+      <div class="service-card reveal"><div class="icon">🗄️</div><h3>SQL & Databases</h3><p>Database design, queries and data pipelines with Python & SQL.</p></div>
+      <div class="service-card reveal"><div class="icon">⚙️</div><h3>MLOps & Deployment</h3><p>Model tracking and deployment with MLflow & Hugging Face — from notebook to production.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--bg2)">
+  <div class="container contact-box">
+    <h2 class="section-title reveal" style="text-align:center">Let's Work Together</h2>
+    <p class="big reveal">Have data? Need insights? <span style="color:var(--accent)">Let's talk.</span></p>
+    <p class="reveal">I'm currently open for freelance projects. Whether you need data analysis, ML models, or AI automation — I'd love to hear about your project.</p>
+    <div class="contact-links reveal">
+      <a href="https://wa.me/201061083841" target="_blank" class="contact-link">💬 WhatsApp</a>
+      <a href="https://www.linkedin.com/in/mahdy-diab-394135224" target="_blank" class="contact-link">💼 LinkedIn</a>
+      <a href="https://github.com/mahdydiab" target="_blank" class="contact-link">🐙 GitHub</a>
+      <a href="mailto:mahdyd991@gmail.com" class="contact-link">✉️ Email</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Mahdy Adel Diab — <span class="mono">while(alive) keep_learning();</span></p>
+</footer>
+
+<script>
+// ===== Typing Effect =====
+const roles = ["Data Scientist 🔬", "AI Specialist 🤖", "Data Analyst 📊", "ML Enthusiast ⚡"];
+let ri = 0, ci = 0, deleting = false;
+const typedEl = document.getElementById('typed');
+function type(){
+  const word = roles[ri];
+  typedEl.textContent = word.substring(0, ci);
+  if(!deleting && ci < word.length){ ci++; setTimeout(type, 90); }
+  else if(!deleting){ deleting = true; setTimeout(type, 1800); }
+  else if(ci > 0){ ci--; setTimeout(type, 45); }
+  else { deleting = false; ri = (ri+1) % roles.length; setTimeout(type, 400); }
+}
+type();
+
+// ===== Particles Background =====
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+canvas.width = innerWidth; canvas.height = innerHeight;
+const pts = Array.from({length: 70}, () => ({
+  x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+  vx: (Math.random()-.5)*.5, vy: (Math.random()-.5)*.5, r: Math.random()*1.5+1
+}));
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pts.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if(p.x<0||p.x>canvas.width) p.vx*=-1;
+    if(p.y<0||p.y>canvas.height) p.vy*=-1;
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle = 'rgba(0,240,255,.6)'; ctx.fill();
+  });
+  for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+    const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.hypot(dx,dy);
+    if(d<120){ ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y);
+      ctx.strokeStyle=`rgba(0,240,255,${.12*(1-d/120)})`; ctx.stroke(); }
+  }
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ===== Scroll Reveal =====
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: .12});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ===== Mobile Menu =====
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+</script>
+</body>
+</html>
